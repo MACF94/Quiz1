@@ -1,0 +1,26 @@
+create tablespace big_tbs_Miguel_Cano datafile
+'C:/oraclexe/app/oracle/oradata/XE/datafile1.dbf' size 1000M
+AUTOEXTEND ON
+EXTENT MANAGEMENT LOCAL
+SEGMENT SPACE MANAGEMENT AUTO
+ONLINE;
+
+create tablespace quiz datafile
+'C:/oraclexe/app/oracle/oradata/XE/datafile2.dbf' size 200M,
+'C:/oraclexe/app/oracle/oradata/XE/datafile3.dbf' size 200M,
+'C:/oraclexe/app/oracle/oradata/XE/datafile4.dbf' size 200M
+AUTOEXTEND ON NEXT 600M MAXSIZE 1000M
+ONLINE;
+
+create profile profile1 LIMIT
+sessions_per_user UNLIMITED
+CPU_PER_SESSION UNLIMITED
+IDLE_TIME 15
+FAILED_LOGIN_ATTEMPTS UNLIMITED;
+
+create user usuario1
+identified BY contraseña
+default tablespace quiz
+profile profile1;
+
+GRANT CONNECT TO usuario1
